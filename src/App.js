@@ -14,6 +14,7 @@ import { auth } from "./firebase";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { APIURLs } from "./api/ApiUrls";
 import { makeGETAPICall } from "./api/methods";
+import Logged from "./protected/Logged";
 export const getUserInfoFromFirebaseUser = (firUser, fullName) => ({
   uid: firUser.uid,
   name: firUser.displayName || fullName,
@@ -80,25 +81,32 @@ function App() {
           <Route
             path="/"
             element={
-              <div>
-                <button
-                  onClick={handleGoogleLogin}
-                  style={{ marginTop: "200px" }}
-                >
-                  Login with Google
-                </button>
-                <button
-                  onClick={() => {
-                    signOut(auth);
-                  }}
-                  style={{ marginTop: "200px" }}
-                >
-                  Logout
-                </button>
-              </div>
+              <Logged userDetail={userDetail}>
+                <div>
+                  <button
+                    onClick={handleGoogleLogin}
+                    style={{ marginTop: "200px" }}
+                  >
+                    Login with Google
+                  </button>
+                  <button
+                    onClick={() => {
+                      signOut(auth);
+                    }}
+                    style={{ marginTop: "200px" }}
+                  >
+                    Logout
+                  </button>
+                </div>
+              </Logged>
             }
           />
-          <Route path="/home" element={<Home />} />
+          <Route
+            path="/home"
+            element={
+              <Home setUserDetail={setUserDetail} userDetail={userDetail} />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
