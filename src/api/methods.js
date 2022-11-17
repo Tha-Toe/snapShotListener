@@ -1,4 +1,4 @@
-import { auth } from "../config/firebase";
+import { auth } from "../firebase";
 import { setAxiosConfig } from "./AxiosConfig";
 const axios = require("axios").default;
 //GET METHOD
