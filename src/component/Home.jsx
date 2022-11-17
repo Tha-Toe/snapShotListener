@@ -30,6 +30,8 @@ export default function Home({ setUserDetail, userDetail }) {
   useEffect(() => {
     const getSportsData = ({ userDetail }) => {
       if (userDetail) {
+        console.log(userDetail);
+        console.log("running useEffect");
         onSportsCounterUpdate({ setSports });
       }
     };
@@ -64,6 +66,7 @@ export const getAllSports = async () => {
 };
 
 export const onSportsCounterUpdate = async ({ setSports }) => {
+  console.log("calling api");
   const q = query(collection(db, "sports_counter"));
   onSnapshot(q, (querySnapshot) => {
     var allsports = [];
@@ -77,6 +80,7 @@ export const onSportsCounterUpdate = async ({ setSports }) => {
               }
             });
           }
+          console.log(allsports);
           setSports(allsports);
           localStorage.setItem("all_sports", JSON.stringify(result));
         } else {
