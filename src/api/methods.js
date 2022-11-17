@@ -1,6 +1,6 @@
 import { auth } from "../firebase";
 import { setAxiosConfig } from "./AxiosConfig";
-const axios = require("axios").default;
+import axios from 'axios';
 //GET METHOD
 export const makeGETAPICall = async (url, additionalHeaders) => {
   try {

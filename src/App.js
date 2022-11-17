@@ -108,6 +108,7 @@ function App() {
 export const getUserById = async (userId) => {
   var apiUrl = APIURLs.getUserInfo;
   apiUrl = apiUrl.replace("{userId}", userId);
+  //console.log(apiUrl);
   const apiResponse = await makeGETAPICall(apiUrl);
   if (apiResponse.status === 200) {
     return apiResponse.data;
